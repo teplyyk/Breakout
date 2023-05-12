@@ -11,25 +11,38 @@ public class ScriptForRealBall : MonoBehaviour
 
 	void OnGUI()
 	{
-		Rect rect = new Rect(
-			Screen.width / 4,
-			Screen.height / 4,
-			Screen.width / 2,
-			Screen.height / 2);
+		if (GameSettings.IsGameRunning == false)
+		{
+			Rect rect = new Rect(
+				Screen.width / 4,
+				Screen.height / 4,
+				Screen.width / 2,
+				Screen.height / 2);
 
-		GUI.Box(rect, "Game Over");
+			GUI.Box(rect, "Game Over");
+		}
 	}
+    private void OnCollisionEnter2D(Collision2D collision)
+	{
+        var tag = collision.gameObject.tag;
+        if (tag == "wall")
+        {
+            Veloсity.x = -Veloсity.x;
+        }
+		else if (tag != "floor")
+		{
+            Veloсity.y = -Veloсity.y;
+        }
 
-	private void OnCollisionEnter2D(Collision2D collision)
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		var tag = collision.gameObject.tag;
 		if (tag == "floor")
 		{
-			// TODO: add game over
-		}
-		else
-		{
-			Veloсity.y = -Veloсity.y;
-		}
+			GameSettings.IsGameRunning = false;
+        }
 	}
 }
