@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScriptForRealBall : MonoBehaviour
 {
@@ -10,14 +8,22 @@ public class ScriptForRealBall : MonoBehaviour
     {
         transform.Translate(Veloсity * Time.deltaTime);
     }
+    void OnGUI()
+    {
+        if (GUILayout.Button("Press Me"))
+            Debug.Log("Hello!");
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //var tag = collision.gameObject.tag;
-        //if (tag == "wall")
-        //{
-        //}
-
-        Veloсity.y = -Veloсity.y;
+        var tag = collision.gameObject.tag;
+        if (tag == "floor")
+        {
+            // TODO: add game over
+        }
+        else
+        {
+            Veloсity.y = -Veloсity.y;
+        }
     }
 }
