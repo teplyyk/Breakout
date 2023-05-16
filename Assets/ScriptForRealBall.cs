@@ -40,6 +40,7 @@ public class ScriptForRealBall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
 	{
 		var tag = collision.gameObject.tag;
+		
 		if (tag == "floor")
 		{
 			GameSettings.IsGameRunning = false;
