@@ -4,24 +4,25 @@ using UnityEngine.UIElements;
 
 public class BlockMannager : MonoBehaviour
 {
-    public GameObject BlockPrefab;
-    public float RowHeight;
-    public float BlockHorizontalDistance;
-    public float BlockVerticalDistance;
-    void Start()
-    {
-        Vector3 BlockPosition = new Vector3(0 - BlockHorizontalDistance * 3.5f, RowHeight, 0);
+	public GameObject BlockPrefab;
+	public float RowHeight;
+	public float RowDistance;
+	public float ColumnDistance;
 
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                Instantiate(BlockPrefab, BlockPosition, Quaternion.identity);
-                BlockPosition.x += BlockHorizontalDistance;
-            }
-            
-        }
-    }
+	void Start()
+	{
+		float y = RowHeight;
+		for (int i = 0; i < 4; i++)
+		{
+			float x = -3.5f * ColumnDistance;
+			for (int j = 0; j < 8; j++)
+			{
+				Instantiate(BlockPrefab, new Vector3(x, y, 0.0f), Quaternion.identity);
+				x += ColumnDistance;
+			}
+			y -= RowDistance;
+		}
+	}
 }
 
 
