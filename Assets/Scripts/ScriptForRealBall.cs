@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class ScriptForRealBall : MonoBehaviour
 {
@@ -31,9 +33,26 @@ public class ScriptForRealBall : MonoBehaviour
         }
 		else if (tag != "floor")
 		{
-            Veloсity.y = -Veloсity.y;
-        }
+            if (tag == "paddle")
+			{
+				float Center = collision.gameObject.transform.position.x;
+				float Contact = collision.GetContact(0).point.x;
+				float Width = collision.gameObject.transform.localScale.x;
+                float RelativeContact = (Center - Contact) / Width;
+				if (RelativeContact > 0.8)
+				{
+					Veloсity.x += 1;
+				}
+				else if (RelativeContact < 0.2)
+                {
+                    Veloсity.x -= 1;
+                }
 
+
+
+            }
+            Veloсity.y = -Veloсity.y;
+		}
     }
 
 
