@@ -38,20 +38,11 @@ public class ScriptForRealBall : MonoBehaviour
 				float Center = collision.gameObject.transform.position.x;
 				float Contact = collision.GetContact(0).point.x;
 				float Width = collision.gameObject.transform.localScale.x;
-                float RelativeContact = (Center - Contact) / Width;
-				if (RelativeContact > 0.8)
-				{
-					Veloсity.x += 1;
-				}
-				else if (RelativeContact < 0.2)
-                {
-                    Veloсity.x -= 1;
-                }
+                float RelativeContact = (Contact - Center) / Width;
 
-
-
-            }
-            Veloсity.y = -Veloсity.y;
+				Veloсity.x += 20 * RelativeContact;
+			}
+			Veloсity.y = -Veloсity.y;
 		}
     }
 
@@ -59,7 +50,7 @@ public class ScriptForRealBall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
 	{
 		var tag = collision.gameObject.tag;
-		
+
 		if (tag == "floor")
 		{
 			GameSettings.IsGameRunning = false;
