@@ -10,7 +10,6 @@ public class ScriptForRealBall : MonoBehaviour
 	{
 		transform.Translate(Veloсity * Time.deltaTime);
 	}
-
 	void OnGUI()
 	{
 		if (GameSettings.IsGameRunning == false)
