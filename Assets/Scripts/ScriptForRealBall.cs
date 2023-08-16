@@ -7,13 +7,18 @@ using static GameSettings;
 
 public class ScriptForRealBall : MonoBehaviour
 {
-    public enum EGameState
+    public void ChangeStateToGameOver()
+    {
+        GameState = EGameState.GameOver;
+        
+    }
+    public enum EGameState: uint
     {
         Connecting,
         Playing,
         GameOver
     }
-    public static EGameState GameState = EGameState.Connecting;
+    public EGameState GameState = EGameState.Connecting;
 
 Vector3 Veloсity = GameSettings.BallStartingVelocity;
 	
@@ -66,7 +71,7 @@ Vector3 Veloсity = GameSettings.BallStartingVelocity;
 
 		if (tag == "floor")
 		{
-			GameState = EGameState.GameOver;
+            ChangeStateToGameOver();
         }
 	}
     public void OnConnect(CoherenceBridge bridge)
