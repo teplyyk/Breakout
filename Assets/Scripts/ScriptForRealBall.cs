@@ -7,18 +7,26 @@ using static GameSettings;
 
 public class ScriptForRealBall : MonoBehaviour
 {
-	Vector3 Veloсity = GameSettings.BallStartingVelocity;
+    public enum EGameState
+    {
+        Connecting,
+        Playing,
+        GameOver
+    }
+    public static EGameState GameState = EGameState.Connecting;
+
+Vector3 Veloсity = GameSettings.BallStartingVelocity;
 	
 	void FixedUpdate()
 	{
-        if (GameSettings.GameState == EGameState.Playing)
+        if (GameState == EGameState.Playing)
         {
             transform.Translate(Veloсity * Time.deltaTime);
         }
 	}
 	void OnGUI()
 	{
-		if (GameSettings.GameState == EGameState.GameOver)
+		if (GameState == EGameState.GameOver)
 		{
 			Rect rect = new Rect(
 				Screen.width / 4,
@@ -58,17 +66,17 @@ public class ScriptForRealBall : MonoBehaviour
 
 		if (tag == "floor")
 		{
-			GameSettings.GameState = EGameState.GameOver;
+			GameState = EGameState.GameOver;
         }
 	}
     public void OnConnect(CoherenceBridge bridge)
     {
-        GameSettings.GameState = EGameState.Playing;
+        GameState = EGameState.Playing;
     }
 
     public void OnDisconnect(CoherenceBridge bridge, ConnectionCloseReason reason)
     {
-        GameSettings.GameState = EGameState.GameOver;
+        GameState = EGameState.GameOver;
     }
 
 }
