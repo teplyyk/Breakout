@@ -8,10 +8,13 @@ using static GameSettings;
 public class ScriptForRealBall : MonoBehaviour
 {
 	Vector3 Veloсity = GameSettings.BallStartingVelocity;
-
+	
 	void FixedUpdate()
 	{
-		transform.Translate(Veloсity * Time.deltaTime);
+        if (GameSettings.GameState == EGameState.Playing)
+        {
+            transform.Translate(Veloсity * Time.deltaTime);
+        }
 	}
 	void OnGUI()
 	{
