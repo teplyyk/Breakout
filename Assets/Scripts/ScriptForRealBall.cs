@@ -1,6 +1,9 @@
-﻿using Unity.VisualScripting;
+﻿using Coherence.Connection;
+using Coherence.Toolkit;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static GameSettings;
 
 public class ScriptForRealBall : MonoBehaviour
 {
@@ -12,7 +15,7 @@ public class ScriptForRealBall : MonoBehaviour
 	}
 	void OnGUI()
 	{
-		if (GameSettings.IsGameRunning == false)
+		if (GameSettings.GameState == EGameState.GameOver)
 		{
 			Rect rect = new Rect(
 				Screen.width / 4,
@@ -52,7 +55,17 @@ public class ScriptForRealBall : MonoBehaviour
 
 		if (tag == "floor")
 		{
-			GameSettings.IsGameRunning = false;
+			GameSettings.GameState = EGameState.GameOver;
         }
 	}
+    public void OnConnect(CoherenceBridge bridge)
+    {
+        GameSettings.GameState = EGameState.Playing;
+    }
+
+    public void OnDisconnect(CoherenceBridge bridge, ConnectionCloseReason reason)
+    {
+        GameSettings.GameState = EGameState.GameOver;
+    }
+
 }
