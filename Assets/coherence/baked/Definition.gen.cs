@@ -16,7 +16,7 @@ namespace Coherence.Generated
 
 	public class Definition : IDefinition
 	{
-		public const string schemaId = "f202169013b309f7e69356087cf8617f628bbac9";
+		public const string schemaId = "5201eb19b3033868486c1273acc26867ce6c211a";
 		public const uint InternalWorldPosition = 0;
 		public const uint InternalWorldOrientation = 1;
 		public const uint InternalLocalUser = 2;
@@ -129,6 +129,7 @@ namespace Coherence.Generated
 		public const uint InternalPersistenceReady = 4;
 		public const uint InternalGenericCommand = 5;
 		public const uint Internalball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2 = 6;
+		public const uint Internalbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input = 0;
 
 		private static readonly Dictionary<uint, string> componentNamesForTypeIds = new Dictionary<uint, string>() {
 			{ 0, "WorldPosition" },
@@ -722,6 +723,8 @@ namespace Coherence.Generated
 		{
 			switch (inputType)
 			{
+				case Definition.Internalbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input:
+					return breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input.Deserialize(bitStream);
 				default:
 					break;
 			}
@@ -805,6 +808,9 @@ namespace Coherence.Generated
 
 			switch (inputType)
 			{
+				case Definition.Internalbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input:
+					breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input.Serialize((breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input)inputData.Input, bitStream);
+					break;
 				default:
 					break;
 			}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2984347696871942196}
   - component: {fileID: 2984347696871942216}
   - component: {fileID: 2984347696871942217}
+  - component: {fileID: 9019277541016076542}
   m_Layer: 0
   m_Name: breakout_pieces_78
   m_TagString: paddle
@@ -214,8 +215,8 @@ MonoBehaviour:
   bakedScriptType: Coherence.Generated.CoherenceSyncbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b,
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
-  simulationType: 0
-  authorityTransferType: 0
+  simulationType: 3
+  authorityTransferType: 2
   orphanedBehavior: 0
   lifetimeType: 0
   uniquenessType: 0
@@ -288,3 +289,21 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+--- !u!114 &9019277541016076542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984347696871942199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc97a814921d461188a38ca20db6787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialBufferSize: 32
+  InitialInputDelay: 3
+  DisconnectOnTimeReset: 0
+  DestroyOnInputAuthorityDisconnected: 1
+  UseFixedSimulationFrames: 0
+  fields: []

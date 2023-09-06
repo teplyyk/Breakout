@@ -72,6 +72,11 @@ namespace Coherence.Generated
 		private Logger logger = Log.GetLogger<CoherenceSyncbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b>();
 
 		// Cached targets for commands
+		private InputBuffer<breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input> inputBuffer;
+		private breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input currentInput;
+		private long lastAddedFrame = -1;
+		private CoherenceInput coherenceInput;
+		private long currentSimulationFrame => coherenceInput.CurrentSimulationFrame;
 
 		private IClient client;
 		private CoherenceBridge bridge;
@@ -134,6 +139,10 @@ namespace Coherence.Generated
 
 		public override void Dispose()
 		{
+			if (bridge != null)
+			{
+				bridge.OnLateFixedNetworkUpdate -= SendInputState;
+			}
 		}
 
 		public override void Initialize(SerializeEntityID entityId, CoherenceBridge bridge, IClient client, CoherenceInput input, Logger logger)
@@ -142,6 +151,31 @@ namespace Coherence.Generated
 			this.bridge = bridge;
 			this.entityId = entityId;
 			this.client = client;
+			coherenceInput = input;
+			inputBuffer = new InputBuffer<breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input>(coherenceInput.InitialBufferSize, coherenceInput.InitialInputDelay, coherenceInput.UseFixedSimulationFrames);
+
+			coherenceInput.internalSetButton = SetButton;
+			coherenceInput.internalSetAxis = SetAxis;
+			coherenceInput.internalSetAxis2D = SetAxis2D;
+			coherenceInput.internalSetAxis3D = SetAxis3D;
+			coherenceInput.internalSetRotation = SetRotation;
+			coherenceInput.internalSetInteger = SetInteger;
+			coherenceInput.internalSetString = SetString;
+			coherenceInput.internalGetButton = GetButton;
+			coherenceInput.internalGetAxis = GetAxis;
+			coherenceInput.internalGetAxis2D = GetAxis2D;
+			coherenceInput.internalGetAxis3D = GetAxis3D;
+			coherenceInput.internalGetRotation = GetRotation;
+			coherenceInput.internalGetInteger = GetInteger;
+			coherenceInput.internalGetString = GetString;
+			coherenceInput.internalRequestBuffer = () => inputBuffer;
+			coherenceInput.internalOnInputReceived += OnInput;
+			coherenceInput.internalRequestBuffer = () => inputBuffer;
+
+			if (coherenceInput.UseFixedSimulationFrames)
+			{
+				bridge.OnLateFixedNetworkUpdate += SendInputState;
+			}
 		}
 
 		public override void ReceiveCommand(IEntityCommand command)
@@ -152,6 +186,206 @@ namespace Coherence.Generated
 					logger.Warning($"[CoherenceSyncbreakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b] Unhandled command: {command.GetType()}.");
 					break;
 			}
+		}
+
+		private void SetButton(string name, bool value)
+		{
+			switch(name)
+			{
+				default:
+					logger.Error($"No input button of name: {name}");
+					break;
+			}
+		}
+
+		private void SetAxis(string name, float value)
+		{
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis of name: {name}");
+				break;
+			}
+		}
+
+		private void SetAxis2D(string name, Vector2 value)
+		{
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis2D of name: {name}");
+				break;
+			}
+		}
+
+		private void SetAxis3D(string name, Vector3 value)
+		{
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis3D of name: {name}");
+				break;
+			}
+		}
+
+		private void SetRotation(string name, Quaternion value)
+		{
+			switch(name)
+			{
+			default:
+				logger.Error($"No input rotation of name: {name}");
+				break;
+			}
+		}
+
+		private void SetInteger(string name, int value)
+		{
+			switch(name)
+			{
+			default:
+				logger.Error($"No input integer of name: {name}");
+				break;
+			}
+		}
+
+		private void SetString(string name, string value)
+		{
+			switch(name)
+			{
+				default:
+					logger.Error($"No input button of name: {name}");
+					break;
+			}
+		}
+
+		public override void SendInputState()
+		{
+			if (!coherenceInput.IsProducer || !coherenceInput.IsReadyToProcessInputs || !coherenceInput.IsInputOwner)
+			{
+				return;
+			}
+
+			if (lastAddedFrame != currentSimulationFrame)
+			{
+				inputBuffer.AddInput(currentInput, currentSimulationFrame);
+				lastAddedFrame = currentSimulationFrame;
+			}
+
+			while (inputBuffer.DequeueForSending(currentSimulationFrame, out long frameToSend, out breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input input, out bool differs))
+			{
+				coherenceInput.DebugOnInputSent(frameToSend, input);
+				client.SendInput(input, frameToSend, entityId);
+			}
+		}
+
+		private bool ShouldPollCurrentInput(long frame)
+		{
+			return coherenceInput.IsProducer && coherenceInput.Delay == 0 && frame == currentSimulationFrame;
+		}
+
+		private bool GetButton(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+				default:
+					logger.Error($"No input button of name: {name}");
+					break;
+			}
+
+			return false;
+		}
+
+		private float GetAxis(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis of name: {name}");
+				break;
+			}
+
+			return 0f;
+		}
+
+		private Vector2 GetAxis2D(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis2D of name: {name}");
+				break;
+			}
+
+			return Vector2.zero;
+		}
+
+		private Vector3 GetAxis3D(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+			default:
+				logger.Error($"No input axis3D of name: {name}");
+				break;
+			}
+
+			return Vector3.zero;
+		}
+
+		private Quaternion GetRotation(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+			default:
+				logger.Error($"No input rotation of name: {name}");
+				break;
+			}
+
+			return Quaternion.identity;
+		}
+
+		private int GetInteger(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+			default:
+				logger.Error($"No input integer of name: {name}");
+				break;
+			}
+
+			return default;
+		}
+
+		private string GetString(string name, long? simulationFrame)
+		{
+			long frame = simulationFrame.GetValueOrDefault(currentSimulationFrame);
+
+			switch(name)
+			{
+				default:
+					logger.Error($"No input button of name: {name}");
+					break;
+			}
+
+			return null;
+		}
+
+		private void OnInput(IEntityInput entityInput, long frame)
+		{
+			var input = (breakout_pieces_78_a5e9c6619f64a0a41ada7af541fac44b_Input)entityInput;
+			coherenceInput.DebugOnInputReceived(frame, entityInput);
+			inputBuffer.ReceiveInput(input, frame);
 		}
 	}
 }
