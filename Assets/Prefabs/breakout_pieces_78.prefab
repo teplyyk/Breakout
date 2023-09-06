@@ -236,7 +236,7 @@ MonoBehaviour:
       m_Calls: []
   scenePrefabInstanceUUID: 
   coherenceUUID: 
-  usingReflection: 1
+  usingReflection: 0
   coherenceTag: 
   componentActions: []
   floatingOriginMode: 0
