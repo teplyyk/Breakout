@@ -1,0 +1,5 @@
+component ball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745
+  position Vector3 [compression "None"]
+
+command ball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2 [routing "AuthorityOnly"]
+

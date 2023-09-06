@@ -16,7 +16,7 @@ namespace Coherence.Generated
 
 	public class Definition : IDefinition
 	{
-		public const string schemaId = "559e12bda377769be86c35726eba28796fc8003a";
+		public const string schemaId = "63b9b622963c33e03272fc975fd23fddddd10939";
 		public const uint InternalWorldPosition = 0;
 		public const uint InternalWorldOrientation = 1;
 		public const uint InternalLocalUser = 2;
@@ -120,12 +120,14 @@ namespace Coherence.Generated
 		public const uint InternalGenericFieldULong3 = 100;
 		public const uint InternalGenericFieldColor0 = 101;
 		public const uint InternalGenericFieldColor1 = 102;
+		public const uint Internalball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745 = 103;
 		public const uint InternalAuthorityRequest = 0;
 		public const uint InternalAuthorityTransfer = 1;
 		public const uint InternalQuerySynced = 2;
 		public const uint InternalAdoptOrphan = 3;
 		public const uint InternalPersistenceReady = 4;
 		public const uint InternalGenericCommand = 5;
+		public const uint Internalball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2 = 6;
 
 		private static readonly Dictionary<uint, string> componentNamesForTypeIds = new Dictionary<uint, string>() {
 			{ 0, "WorldPosition" },
@@ -231,6 +233,7 @@ namespace Coherence.Generated
 			{ 100, "GenericFieldULong3" },
 			{ 101, "GenericFieldColor0" },
 			{ 102, "GenericFieldColor1" },
+			{ 103, "ball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745" },
 		};
 
 		public static string ComponentNameForTypeId(uint typeId)
@@ -458,6 +461,8 @@ namespace Coherence.Generated
 					return GenericFieldColor0.Deserialize(inProtocolStream);
 				case InternalGenericFieldColor1:
 					return GenericFieldColor1.Deserialize(inProtocolStream);
+				case Internalball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745:
+					return ball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745.Deserialize(inProtocolStream);
 				default:
 					return (null, 0);
 			}
@@ -674,6 +679,8 @@ namespace Coherence.Generated
 					return GenericFieldColor0.Serialize((GenericFieldColor0)data, mask, protocolStream);
 				case InternalGenericFieldColor1:
 					return GenericFieldColor1.Serialize((GenericFieldColor1)data, mask, protocolStream);
+				case Internalball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745:
+					return ball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745.Serialize((ball_a3a3c71b4ac349e438defc94ab13ef46_UnityEngine__char_46_Transform_5681431744216151745)data, mask, protocolStream);
 				default:
 					logger.Error("Missing serialization implementation for a component.", ("component", data.GetComponentType()));
 					return 0;
@@ -696,6 +703,8 @@ namespace Coherence.Generated
 					return PersistenceReady.Deserialize(bitStream);
 				case Definition.InternalGenericCommand:
 					return GenericCommand.Deserialize(bitStream);
+				case Definition.Internalball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2:
+					return ball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2.Deserialize(bitStream);
 				default:
 					break;
 			}
@@ -774,6 +783,9 @@ namespace Coherence.Generated
 					break;
 				case Definition.InternalGenericCommand:
 					GenericCommand.Serialize((GenericCommand)data, bitStream);
+					break;
+				case Definition.Internalball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2:
+					ball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2.Serialize((ball_a3a3c71b4ac349e438defc94ab13ef46_ScriptForRealBall__char_46_ChangeStateToGameOver_ad42c870_f2cc_4844_bfbf_d48aad054ca2)data, bitStream);
 					break;
 				default:
 					break;

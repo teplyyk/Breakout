@@ -205,11 +205,11 @@ MonoBehaviour:
   bakedScriptType: Coherence.Generated.CoherenceSyncball_a3a3c71b4ac349e438defc94ab13ef46,
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
-  simulationType: 0
-  authorityTransferType: 2
+  simulationType: 2
+  authorityTransferType: 0
   orphanedBehavior: 0
   lifetimeType: 0
-  uniquenessType: 0
+  uniquenessType: 1
   replacementStrategy: 0
   unsyncedNetworkEntityPriority: 0
   preserveChildren: 0
