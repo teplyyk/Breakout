@@ -215,7 +215,7 @@ MonoBehaviour:
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 0
-  authorityTransferType: 2
+  authorityTransferType: 0
   orphanedBehavior: 0
   lifetimeType: 0
   uniquenessType: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
       m_Calls: []
   scenePrefabInstanceUUID: 
   coherenceUUID: 
-  usingReflection: 0
+  usingReflection: 1
   coherenceTag: 
   componentActions: []
   floatingOriginMode: 0
