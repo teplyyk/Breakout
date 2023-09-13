@@ -238,7 +238,8 @@ MonoBehaviour:
   coherenceUUID: 
   usingReflection: 0
   coherenceTag: 
-  componentActions: []
+  componentActions:
+  - rid: 5061442659040362496
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -246,6 +247,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 5061442659040362496
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 2984347696871942216}
     - rid: 8788852173855522816
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:
